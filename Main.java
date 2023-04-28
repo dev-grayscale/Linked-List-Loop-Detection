@@ -17,7 +17,7 @@ public class Main {
   /**
    * The 1st approach for solving it would be to use a set in which to store all the visited nodes. If we encounter an already
    * visited node -> this is the start of the loop. This would work because a corrupted linked list will definitely point to an earlier node
-   * that we already visited.
+   * that we already visited, if we continue traversing until a node is not null.
    *
    * Time Complexity: O(n)
    * Space Complexity: O(n)
@@ -50,7 +50,7 @@ public class Main {
    *
    * <info>To explain why this would work if a loop exists:
    * Let's denote the non-loop part of the linked list with k. When the slow pointer passed k steps, it would be located at the loop start. The fast one would've
-   * passed 2k steps, which means k (2k-k) steps into the loop. Since k could exceed the loop_length, we will denote it as mod(k, loop_length) = K,
+   * passed 2k steps, which means k=(2k-k) steps into the loop. Since k could exceed the loop_length, we will denote it as mod(k, loop_length) = K,
    * to always be within limits.
    *
    * Using the information above, we conclude that the fast pointer is (loop_length - K) positions behind slow pointer and they will collide after (loop_length - K)
@@ -58,7 +58,7 @@ public class Main {
    *
    * The point of collision will be located at (loop_length - K) position, which means there are still K steps until the head of the loop is reached.
    * The non loop part of the linked list is also K, so if we set any pointer (let's choose the fast one) in the head of the linked list and start moving it by
-   * 1 position at a time and at the same time moving the slow pointer from the collision point 1 position at a time, they will collide at the beginning of the list.
+   * 1 position at a time and at the same time moving the slow pointer from the collision point 1 position at a time, they will collide at the beginning of the loop.
    * </info>
    *
    * Time Complexity: O(n)
